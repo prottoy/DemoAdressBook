@@ -33,16 +33,21 @@
     self.fullName.text= contact.fullName;
     self.numbers.text= number;
     
-    adding= NO;
-    self.notes.hidden = YES;
-    self.addNote.hidden= YES;
-    self.note.hidden = YES;
+    adding= YES;
+    self.notes.hidden = NO;
+    self.addNote.hidden= NO;
+    self.note.hidden = NO;
     
     NSUserDefaults *prefs= [NSUserDefaults standardUserDefaults];
     NSString *contactId=[NSString stringWithFormat:@"%d",(int)contact.contactId];
     notes.text= [prefs objectForKey:contactId];
     
     NSLog(@"%@",[prefs objectForKey:contactId]);
+    
+    image.layer.cornerRadius= image.frame.size.width/2;
+    image.layer.borderColor=[UIColor blackColor].CGColor;
+    image.layer.borderWidth= 2.0;
+    image.clipsToBounds= YES;
 }
 
 -(IBAction)toogleNotes:(id)sender{
@@ -65,7 +70,7 @@
 }
 
 -(IBAction)back:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 -(IBAction)addNote:(id)sender{
@@ -82,6 +87,7 @@
     [prefs setObject:noteToAdd forKey:contactId];
     
     notes.text= noteToAdd;
+    self.note.text=@"";
     [self.note resignFirstResponder];
 }
 /*

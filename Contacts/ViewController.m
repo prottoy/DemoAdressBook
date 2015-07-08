@@ -141,7 +141,7 @@
             contacts.fullName = [NSString stringWithFormat:@"%@ %@", contacts.firstNames, contacts.lastNames];
 
             
-            // get contacts picture, if pic doesn't exists, show standart one
+            // get contacts picture, if pic doesn't exists, show standard one
             CFDataRef imgData = ABPersonCopyImageData(person);
             NSData *imageData = (__bridge NSData *)imgData;
             contacts.image = [UIImage imageWithData:imageData];
